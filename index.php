@@ -7,7 +7,7 @@ $text = '';
 try {
     $text = getInput();
 
-    if(isMessageWithPassword($text) == true) {
+    if($text !== null && isMessageWithPassword($text) == true) {
         var_dump(parse($text));
     } else {
         var_dump('Ошибка: Message without password.');
