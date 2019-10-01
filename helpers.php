@@ -24,6 +24,17 @@ function getInput(): ?string {
     return $text;
 }
 
+function parse(string $message): string {
+    preg_match(PASSWORD_PATTERN, $message, $resultPassword);
+    preg_match(AMOUNT_PATTERN, $message, $resultAmount);
+    preg_match(ACCOUNT_PATTERN, $message, $resultAccount);
+
+    return 'Код подтверждения ' . getArray($resultPassword, 1) . "\r\n" .
+        'Сумма ' . getArray($resultAmount, 1) . "\r\n" .
+        'Кошелек ' . getArray($resultAccount, 1)
+    ;
+}
+
 function isMessageWithPassword(string $text): bool {
     return preg_match(PASSWORD_PATTERN, $text);
 }
